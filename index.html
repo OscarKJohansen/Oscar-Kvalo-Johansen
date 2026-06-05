@@ -1,61 +1,167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Data konsulenten</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">data konsulenten</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-current="page" href="#">Hjem</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Tjenester</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Kontakt oss</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Data konsulenten</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-current="page" href="#">Hjem</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tjenester</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Kontakt oss</a>
+            </li>
+          </ul>
+        </div>
+        <div class="d-flex ms-auto align-items-center">
+          <button id="authOpenBtn" class="btn btn-sm btn-outline-primary">
+            Logg inn
+          </button>
+          <span id="authUserBadge" class="ms-2 small text-muted"></span>
+        </div>
+      </div>
+    </nav>
+    <aside id="authPanel" class="auth-panel" aria-hidden="true">
+      <header
+        class="p-3 border-bottom d-flex justify-content-between align-items-center"
+      >
+        <strong>Min profil</strong>
+        <button id="authCloseBtn" class="btn btn-sm btn-outline-secondary">
+          Lukk
+        </button>
+      </header>
+
+      <div class="p-3">
+        <div id="authLoggedOut">
+          <div class="d-flex gap-2 mb-3">
+            <button class="btn btn-sm btn-outline-dark active" data-tab="login">
+              Logg inn
+            </button>
+            <button class="btn btn-sm btn-outline-dark" data-tab="signup">
+              Opprett profil
+            </button>
+          </div>
+
+          <form id="loginForm" data-panel="login">
+            <input
+              class="form-control mb-2"
+              type="email"
+              id="loginEmail"
+              placeholder="E-post"
+              required
+            />
+            <input
+              class="form-control mb-3"
+              type="password"
+              id="loginPass"
+              placeholder="Passord"
+              required
+            />
+            <button class="btn btn-dark w-100 mb-2" type="submit">
+              Logg inn
+            </button>
+            <div id="loginMsg" class="text-muted small"></div>
+          </form>
+
+          <form id="signupForm" data-panel="signup" style="display: none">
+            <input
+              class="form-control mb-2"
+              type="text"
+              id="signupName"
+              placeholder="Brukernavn (valgfritt)"
+            />
+            <input
+              class="form-control mb-2"
+              type="email"
+              id="signupEmail"
+              placeholder="E-post"
+              required
+            />
+            <input
+              class="form-control mb-3"
+              type="password"
+              id="signupPass"
+              placeholder="Passord"
+              required
+            />
+            <button class="btn btn-dark w-100 mb-2" type="submit">
+              Opprett profil
+            </button>
+            <div id="signupMsg" class="text-muted small mt-2"></div>
+          </form>
+        </div>
+
+        <div id="authLoggedIn" style="display: none">
+          <p class="small text-muted mb-1" id="whoami"></p>
+          <div id="roleBadge" class="mb-2 small"></div>
+          <button id="logoutBtn" class="btn btn-outline-dark w-100">
+            Logg ut
+          </button>
+        </div>
+      </div>
+    </aside>
+    <div class="cards-row">
+      <div class="card" style="width: 18rem">
+        <img src="surface-xSiQBSq-I0M-unsplash.jpg" class="card-img-top"  />
+        <div class="card-body">
+          <h5 class="card-title">Våre ansatte</h5>
+          <p class="card-text">
+            Møt våre ansatte.
+          </p>
+          <a href="#" class="btn btn-primary">Se ansatte</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem">
+        <img src="luca-bravo-XJXWbfSo2f0-unsplash.jpg" class="card-img-top"  />
+        <div class="card-body">
+          <h5 class="card-title">Våre tjenester</h5>
+          <p class="card-text">
+            Se hvilke tjenester vi tilbyr.
+          </p>
+          <a href="#" class="btn btn-primary">Se tjenester</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem">
+        <img src="marvin-meyer-SYTO3xs06fU-unsplash.jpg" class="card-img-top"  />
+        <div class="card-body">
+          <h5 class="card-title">Beligenhet</h5>
+          <p class="card-text">
+            Se hvor vi holder til.
+          </p>
+          <a href="#" class="btn btn-primary">Se lokasjon</a>
+        </div>
+      </div>
     </div>
-  </div>
-</nav>
-<div class="cards-row">
-     <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-  <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-  <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-    </div>
-    <script src="script.js"></script>
-</body>
+
+    <script type="module" src="script.js"></script>
+  </body>
 </html>
