@@ -137,7 +137,7 @@ async function renderOrders() {
 
   const query = supabase
     .from("bestilling")
-    .select("id, created_at, status, timer, notes, user_id")
+    .select("id, created_at, status, timer, notes, user_id, user_email")
     .order("created_at", { ascending: false });
 
   const { data, error } = isAdmin
@@ -175,7 +175,7 @@ async function renderOrders() {
           <td><span class="badge text-bg-secondary">${order.status ?? "pending"}</span></td>
           <td>${order.timer ?? "-"}</td>
           <td>${order.notes ?? "-"}</td>
-          ${isAdmin ? `<td><code>${order.user_id}</code></td>` : ""}
+          ${isAdmin ? `<td>${order.user_email ?? order.user_id ?? "-"}</td>` : ""}
         </tr>
       `,
     )
@@ -209,6 +209,7 @@ async function createOrder() {
   const { error } = await supabase.from("bestilling").insert([
     {
       user_id: currentUser.id,
+      user_email: currentUser.email,
       status: "pending",
       timer: Number(timerValue),
       notes: notes ? `${service}: ${notes}` : service,
