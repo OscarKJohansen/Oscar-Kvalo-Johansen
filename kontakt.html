@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kontakt oss | Data konsulenten</title>
+    <title>Kontakt oss</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -132,9 +132,9 @@
     </aside>
 
     <main class="container py-5">
-      <div class="row align-items-stretch g-4">
-        <div class="col-lg-5">
-          <div class="card h-100 border-0 shadow-sm rounded-4 bg-body-tertiary">
+      <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 mx-auto">
+          <div class="card border-0 shadow-sm rounded-4 bg-body-tertiary">
             <div
               class="card-body p-4 d-flex flex-column justify-content-between"
             >
@@ -163,34 +163,119 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col-lg-7">
-          <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+      <section class="row mt-5">
+        <div class="col-12 col-lg-10 mx-auto">
+          <div class="card border-0 shadow-sm rounded-4 mb-4">
             <div class="card-body p-4 p-lg-5">
-              <span class="badge text-bg-dark mb-3"
-                >Snakk med en konsulent</span
-              >
-              <h5 class="card-title fw-semibold mb-2">
-                Vi hjelper deg raskt videre
-              </h5>
-              <h6 class="card-subtitle mb-3 text-body-secondary">
-                Vi har mange dyktige konsulenter
-              </h6>
-              <p class="card-text mb-4">
-                Fortell oss litt om behovet ditt.
+              <span class="badge text-bg-primary mb-2">Ny bestilling</span>
+              <h2 class="h4 mb-2">Lag en bestilling</h2>
+              <p class="text-muted mb-4">
+                Velg tjeneste, legg inn pris og skriv et kort notat.
+                Bestillingen blir lagret på kontoen din.
               </p>
-              <div class="d-flex flex-wrap gap-2">
-                <a href="mailto:post@datakonsulenten.no" class="btn btn-dark">
-                  Send e-post
-                </a>
-                <a href="tjenester.html" class="btn btn-outline-dark">
-                  Se tjenester
-                </a>
+
+              <form id="orderForm" class="row g-3">
+                <div class="col-md-6">
+                  <label for="orderService" class="form-label">Tjeneste</label>
+                  <select id="orderService" class="form-select" required>
+                    <option value="" selected disabled>Velg en tjeneste</option>
+                    <option value="Strategisk IT rådgivning">
+                      Strategisk IT rådgivning
+                    </option>
+                    <option value="Sky og infrastrukturhjelp">
+                      Sky og infrastrukturhjelp
+                    </option>
+                    <option value="Datasikkerhet og revisjon">
+                      Datasikkerhet og revisjon
+                    </option>
+                    <option value="Systemintegrasjon">Systemintegrasjon</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="orderPrice" class="form-label"
+                    >Totalpris (kr)</label
+                  >
+                  <input
+                    id="orderPrice"
+                    type="number"
+                    class="form-control"
+                    min="0"
+                    step="0.01"
+                    placeholder="1890"
+                    required
+                  />
+                </div>
+                <div class="col-12">
+                  <label for="orderNotes" class="form-label">Notat</label>
+                  <textarea
+                    id="orderNotes"
+                    class="form-control"
+                    rows="4"
+                    placeholder="Skriv kort hva du trenger hjelp til"
+                  ></textarea>
+                </div>
+                <div
+                  class="col-12 d-flex flex-column flex-sm-row gap-2 align-items-start align-items-sm-center"
+                >
+                  <button type="submit" class="btn btn-primary">
+                    Opprett bestilling
+                  </button>
+                  <div id="orderMsg" class="text-muted small"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-4 p-lg-5">
+              <div
+                class="d-flex flex-column flex-md-row justify-content-between gap-2 mb-3"
+              >
+                <div>
+                  <span class="badge text-bg-dark mb-2">Bestillinger</span>
+                  <h2 class="h4 mb-1" id="ordersHeading">
+                    Logg inn for å se bestillingene dine
+                  </h2>
+                  <p class="text-muted mb-0" id="ordersIntro">
+                    Brukere ser sine egne bestillinger. Admins ser alle
+                    bestillinger.
+                  </p>
+                </div>
+                <div class="align-self-md-center">
+                  <span id="ordersCount" class="text-muted small"></span>
+                </div>
+              </div>
+
+              <div id="ordersEmptyState" class="alert alert-light border mb-0">
+                Logg inn for å se bestillingene dine.
+              </div>
+
+              <div
+                id="ordersTableWrap"
+                class="table-responsive"
+                style="display: none"
+              >
+                <table class="table align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>Dato</th>
+                      <th>Status</th>
+                      <th>Pris</th>
+                      <th>Notat</th>
+                      <th id="ordersUserColumn" style="display: none">
+                        Bruker
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="ordersTableBody"></tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </main>
 
     <script type="module" src="script.js"></script>
