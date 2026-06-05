@@ -64,6 +64,7 @@ async function refreshAuthUI() {
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   loginMsg.textContent = "Logger inn...";
+
   const email = document.getElementById("loginEmail").value.trim();
   const pass = document.getElementById("loginPass").value;
 
@@ -71,13 +72,20 @@ loginForm.addEventListener("submit", async (e) => {
     email,
     password: pass,
   });
-  loginMsg.textContent = error ? "Feil: " + error.message : "Innlogget ✅";
-  if (!error) setTimeout(() => panel.classList.remove("open"), 400);
+
+  if (error) {
+    loginMsg.textContent = "Feil: " + error.message;
+  } else {
+    loginMsg.textContent = "Innlogget ✅";
+    await refreshAuthUI(); 
+    setTimeout(() => panel.classList.remove("open"), 400);
+  }
 });
 
 signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   signupMsg.textContent = "Oppretter...";
+
   const name = document.getElementById("signupName").value.trim();
   const email = document
     .getElementById("signupEmail")
@@ -100,4 +108,8 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
   await supabase.auth.signOut();
 });
 
-supabase.auth.onAuthStateChange(() => refreshAuthUI());
+supabase.auth.onAuthStateChange(() => {
+  refreshAuthUI();
+});
+
+refreshAuthUI();
