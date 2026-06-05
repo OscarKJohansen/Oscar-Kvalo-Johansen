@@ -10,6 +10,11 @@ body {
   flex-wrap: wrap;
 }
 
+.cards-row .card-img-top {
+  height: 240px;
+  object-fit: cover;
+}
+
 .auth-panel {
   position: fixed;
   top: 72px;

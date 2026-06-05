@@ -132,11 +132,11 @@
     </aside>
 
     <main class="container py-5">
-      <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 mx-auto">
-          <div class="card border-0 shadow-sm rounded-4 bg-body-tertiary">
+      <section class="row g-4">
+        <div class="col-12 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 bg-body-tertiary h-100">
             <div
-              class="card-body p-4 d-flex flex-column justify-content-between"
+              class="card-body p-4 d-flex h-100 flex-column justify-content-between"
             >
               <div>
                 <span class="badge text-bg-primary mb-3">Kontakt</span>
@@ -146,7 +146,7 @@
                 </h6>
                 <p class="card-text mb-4">
                   Send oss en melding eller kontakt oss direkte på e-post og
-                  telefon for en uforpliktende prat om behovet ditt.
+                  telefon
                 </p>
               </div>
               <div class="d-grid gap-2">
@@ -157,17 +157,15 @@
                   post@datakonsulenten.no
                 </a>
                 <a href="tel:+4722001122" class="btn btn-outline-primary">
-                  22 00 11 22
+                  99 99 99 99
                 </a>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <section class="row mt-5">
-        <div class="col-12 col-lg-10 mx-auto">
-          <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="col-12 col-lg-8">
+          <div class="card border-0 shadow-sm rounded-4 h-100">
             <div class="card-body p-4 p-lg-5">
               <span class="badge text-bg-primary mb-2">Ny bestilling</span>
               <h2 class="h4 mb-2">Lag en bestilling</h2>
@@ -182,20 +180,20 @@
                   <select id="orderService" class="form-select" required>
                     <option value="" selected disabled>Velg en tjeneste</option>
                     <option value="Strategisk IT rådgivning">
-                      Strategisk IT rådgivning
+                      Strategisk IT rådgivning (1890 kr/time)
                     </option>
                     <option value="Sky og infrastrukturhjelp">
-                      Sky og infrastrukturhjelp
+                      Sky og infrastrukturhjelp (1650 kr/time)
                     </option>
                     <option value="Datasikkerhet og revisjon">
-                      Datasikkerhet og revisjon
+                      Datasikkerhet og revisjon (2150 kr/time)
                     </option>
-                    <option value="Systemintegrasjon">Systemintegrasjon</option>
+                    <option value="Systemintegrasjon">Systemintegrasjon (1790 kr/time)</option>
                   </select>
                 </div>
                 <div class="col-md-6">
                   <label for="orderPrice" class="form-label"
-                    >Totalpris (kr)</label
+                    >Totalpris kr</label   
                   >
                   <input
                     id="orderPrice"
@@ -227,7 +225,9 @@
               </form>
             </div>
           </div>
+        </div>
 
+        <div class="col-12">
           <div class="card border-0 shadow-sm rounded-4">
             <div class="card-body p-4 p-lg-5">
               <div

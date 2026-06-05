@@ -55,6 +55,8 @@ async function refreshAuthUI() {
   if (!user) {
     currentUser = null;
     currentRole = null;
+    openBtn.style.display = "";
+    openBtn.textContent = "Logg inn";
     loggedOut.style.display = "";
     loggedIn.style.display = "none";
     userBadge.textContent = "";
@@ -73,6 +75,8 @@ async function refreshAuthUI() {
   const role = profile?.role ?? "user";
   currentUser = user;
   currentRole = role;
+  openBtn.style.display = "";
+  openBtn.textContent = "Min profil";
   loggedOut.style.display = "none";
   loggedIn.style.display = "";
   whoami.textContent = `Innlogget som ${user.email}`;
