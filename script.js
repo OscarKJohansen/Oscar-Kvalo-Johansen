@@ -27,7 +27,7 @@ const ordersTableBody = document.getElementById("ordersTableBody");
 const ordersUserColumn = document.getElementById("ordersUserColumn");
 const orderForm = document.getElementById("orderForm");
 const orderService = document.getElementById("orderService");
-const orderPrice = document.getElementById("orderPrice");
+const orderTimer = document.getElementById("orderTimer");
 const orderNotes = document.getElementById("orderNotes");
 const orderMsg = document.getElementById("orderMsg");
 
@@ -137,7 +137,7 @@ async function renderOrders() {
 
   const query = supabase
     .from("bestilling")
-    .select("id, created_at, status, total_price, notes, user_id")
+    .select("id, created_at, status, timer, notes, user_id")
     .order("created_at", { ascending: false });
 
   const { data, error } = isAdmin
@@ -173,7 +173,7 @@ async function renderOrders() {
         <tr>
           <td>${formatDate(order.created_at)}</td>
           <td><span class="badge text-bg-secondary">${order.status ?? "pending"}</span></td>
-          <td>${formatCurrency(order.total_price)}</td>
+          <td>${order.timer ?? "-"}</td>
           <td>${order.notes ?? "-"}</td>
           ${isAdmin ? `<td><code>${order.user_id}</code></td>` : ""}
         </tr>
@@ -192,12 +192,12 @@ async function createOrder() {
   }
 
   const service = orderService?.value?.trim();
-  const priceValue = orderPrice?.value;
+  const timerValue = orderTimer?.value;
   const notes = orderNotes?.value.trim() || null;
 
-  if (!service || priceValue === "") {
+  if (!service || timerValue === "") {
     if (orderMsg) {
-      orderMsg.textContent = "Velg en tjeneste og legg inn en pris.";
+      orderMsg.textContent = "Velg en tjeneste og legg inn antall timer.";
     }
     return;
   }
@@ -210,7 +210,7 @@ async function createOrder() {
     {
       user_id: currentUser.id,
       status: "pending",
-      total_price: Number(priceValue),
+      timer: Number(timerValue),
       notes: notes ? `${service}: ${notes}` : service,
     },
   ]);

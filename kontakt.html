@@ -56,7 +56,7 @@
         class="p-3 border-bottom d-flex justify-content-between align-items-center"
       >
         <strong>Min profil</strong>
-        <button id="authCloseBtn" class="btn btn-sm btn-outline-secondary">
+        <button id="authCloseBtn" class="btn btn-sm btn-outline-primary">
           Lukk
         </button>
       </header>
@@ -170,7 +170,7 @@
               <span class="badge text-bg-primary mb-2">Ny bestilling</span>
               <h2 class="h4 mb-2">Lag en bestilling</h2>
               <p class="text-muted mb-4">
-                Velg tjeneste, legg inn pris og skriv et kort notat.
+                Velg tjeneste, legg inn antall timer og skriv et kort notat.
                 Bestillingen blir lagret på kontoen din.
               </p>
 
@@ -188,20 +188,22 @@
                     <option value="Datasikkerhet og revisjon">
                       Datasikkerhet og revisjon (2150 kr/time)
                     </option>
-                    <option value="Systemintegrasjon">Systemintegrasjon (1790 kr/time)</option>
+                    <option value="Systemintegrasjon">
+                      Systemintegrasjon (1790 kr/time)
+                    </option>
                   </select>
                 </div>
                 <div class="col-md-6">
-                  <label for="orderPrice" class="form-label"
-                    >Totalpris kr</label   
+                  <label for="orderTimer" class="form-label"
+                    >Antall timer</label
                   >
                   <input
-                    id="orderPrice"
+                    id="orderTimer"
                     type="number"
                     class="form-control"
                     min="0"
                     step="0.01"
-                    placeholder="1890"
+                    placeholder="2"
                     required
                   />
                 </div>
@@ -262,7 +264,7 @@
                     <tr>
                       <th>Dato</th>
                       <th>Status</th>
-                      <th>Pris</th>
+                      <th>Timer</th>
                       <th>Notat</th>
                       <th id="ordersUserColumn" style="display: none">
                         Bruker
