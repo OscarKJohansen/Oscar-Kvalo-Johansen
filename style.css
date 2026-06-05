@@ -15,11 +15,8 @@ body {
   top: 72px;
   right: 1%;
   width: 320px;
-  max-width: calc(100% - 2%);
   background: #fff;
   border: 1px solid #ddd;
-  border-radius: 6px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   z-index: 1050;
   display: none;
 }
@@ -27,6 +24,3 @@ body {
 .auth-panel.open {
   display: block;
 }
-
-
-

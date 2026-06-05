@@ -1,6 +1,6 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-/** 1) Koble til Supabase (BYTT til dine nøkler) */
+
 const supabase = createClient(
   "https://xxosihnqadwnhexywxkn.supabase.co",
   "sb_publishable_VLHzIQQIQNiJA_KRKX9hZA_Bn6PIUO2",
